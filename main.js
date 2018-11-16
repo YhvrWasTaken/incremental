@@ -1,3 +1,5 @@
+var savegame = JSON.parse(localStorage.getItem("savegame"));
+
 var game = {
   money: 10,
 
@@ -7,7 +9,7 @@ var game = {
   megaprestigecost: 100,
   megaprestigemult: 1,
 
-  infcoins: 1,
+  infcoins: 0,
 
   tier1amt: 0,
   tier1cost: 1e1,
@@ -39,10 +41,17 @@ var game = {
   tier5until10: 0,
   tier5display: 0,
 
-  autobuy: false
-}
+  autobuy: false,
+
+  infupgrade1cost: 1,
+  infupgrade1: 10
+};
 
 var storage = 0;
+
+if (savegame !== null) {
+  game = savegame;
+}
 
 function tier1produced() {
   if (game.money >= game.tier1cost) {
@@ -284,13 +293,23 @@ function tier5until10func() {
   }
 }
 
+function infupgrade1() {
+  if (game.infcoins >= game.infupgrade1cost) {
+    game.infcoins -= game.infupgrade1cost
+    game.infupgrade1cost = game.infupgrade1cost * 2;
+    game.infupgrade1 = game.infupgrade1 * 10;
+    document.getElementById("infcurrency").innerHTML = game.infcoins;
+    document.getElementById("infupgrade1cost").innerHTML = game.infupgrade1cost;
+  }
+}
+
 function autobuyfunc() {
   game.autobuy = !game.autobuy
 }
 
 function prestige() {
   if(game.tier5amt >= game.prestigecost) {
-    game.money = 100;
+    game.money = game.infupgrade1;
     game.prestigecost += 20;
     game.prestigemult = game.prestigemult * 100;
     game.tier1amt = 0;
@@ -340,7 +359,7 @@ function prestige() {
 
 function megaprestige() {
   if(game.tier5amt >= game.megaprestigecost) {
-    game.money = 100;
+    game.money = game.infupgrade1;
     game.megaprestigecost += 100;
     game.megaprestigemult = game.megaprestigemult * 500;
     game.prestigecost = 20;
@@ -393,7 +412,7 @@ function megaprestige() {
 
 function infinityprestige() {
   if(game.money >= Infinity || isNaN(game.money)) {
-    game.money = 100;
+    game.money = game.infupgrade1;
     game.prestigecost = 20;
     game.prestigemult = 1;
     game.megaprestigecost = 100;
@@ -442,6 +461,8 @@ function infinityprestige() {
       document.getElementById("tier5mult").innerHTML = game.tier5mult;
       document.getElementById("prestigecost").innerHTML = game.prestigecost;
       document.getElementById("megaprestigecost").innerHTML = game.megaprestigecost;
+
+      document.getElementById("infcurrency").innerHTML = game.infcoins;
   }
 }
 
@@ -457,7 +478,7 @@ function cheat() {
 }
 
 function save() {
-  localStorage.setItem("save", JSON.stringify(game));
+  localStorage.setItem("savegame", JSON.stringify(game));
 }
 
 function oppositerange10(tiernum) {
@@ -663,4 +684,4 @@ window.setInterval(function() {
   } else {
     document.getElementById("tier5amt").innerHTML = game.tier5display;
   }
-}, 100); // Eyy, 666 Lines
+}, 100);
