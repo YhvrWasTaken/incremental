@@ -1,0 +1,45 @@
+body {
+
+  background: #464646;
+
+}
+
+span.btn-line{
+
+    display: block;
+
+}
+
+button {
+
+  font-size: 15px;
+  font-family: courier;
+  border-radius: 3px;
+  outline: none;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+
+}
+
+
+
+
+h3 {
+
+  color: #90ffff;
+  font-size: 25px;
+
+}
+
+div {
+
+  text-align: center;
+  font-family: courier;
+
+}
+
+button:active{
+    border-top: solid 2px #8f8f8f;
+    border-left: solid 2px #8f8f8f;
+}
