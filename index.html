@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="incremental" content="a game about numbers." charset="utf-8">
+    <title>incremental</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body>
+    <div>
+      <h3 id="currency">10</h3>
+      <div>
+        <button onclick="autobuyfunc()">
+          <span id="btn-line">Autobuy Toggle</span>
+        </button>
+        <p>Tier 1 | You have : <span id="tier1amt">0</span> / <span id="tier1until10">0</p>
+        <p><span id="tier1mult">1</span>x</p>
+        <button onclick="tier1produced()">
+          <span id="btn-line">Cost : <span id="tier1cost">10</span>
+        </button>
+        <button onclick="tier1until10func()">
+          <span id="btn-line">Until 10</span>
+        </button>
+        <p>Tier 2 | You have : <span id="tier2amt">0</span> / <span id="tier2until10">0</p>
+        <p><span id="tier2mult">1</span>x</p>
+        <button onclick="tier2produced()">
+          <span id="btn-line">Cost : <span id="tier2cost">100</span>
+        </button>
+        <button onclick="tier2until10func()">
+          <span id="btn-line">Until 10</span>
+        </button>
+        <p>Tier 3 | You have : <span id="tier3amt">0</span> / <span id="tier3until10">0</p>
+        <p><span id="tier3mult">1</span>x</p>
+        <button onclick="tier3produced()">
+          <span id="btn-line">Cost : <span id="tier3cost">1000</span>
+        </button>
+        <button onclick="tier3until10func()">
+          <span id="btn-line">Until 10</span>
+        </button>
+        <p>Tier 4 | You have : <span id="tier4amt">0</span> / <span id="tier4until10">0</p>
+        <p><span id="tier4mult">1</span>x</p>
+        <button onclick="tier4produced()">
+          <span id="btn-line">Cost : <span id="tier4cost">10000</span>
+        </button>
+        <button onclick="tier4until10func()">
+          <span id="btn-line">Until 10</span>
+        </button>
+        <p>Tier 5 | You have : <span id="tier5amt">0</span> / <span id="tier5until10">0</p>
+        <p><span id="tier5mult">1</span>x</p>
+        <button onclick="tier5produced()">
+          <span id="btn-line">Cost : <span id="tier5cost">100000</span>
+        </button>
+        <button onclick="tier5until10func()">
+          <span id="btn-line">Until 10</span>
+        </button>
+        <br>
+        <h4>----------</h4>
+        <button onclick="prestige()">
+          <span id="btn-line">Prestige.</span>
+          <br>
+          <span id="btn-line"> >x100 Multiplier<</span>
+          <br>
+          <span id="btn-line"> >Only <span id="prestigecost">20</span> Tier 5<</span>
+        </button>
+        <button onclick="megaprestige()">
+          <span id="btn-line">Mega Prestige.</span>
+          <br>
+          <span id="btn-line"> >x500 Multiplier<</span>
+          <br>
+          <span id="btn-line"> >Only <span id="megaprestigecost">100</span> Tier 5<</span>
+        </button>
+        <br>
+        <h4>----------</h4>
+        <button onclick="infinityprestige()">
+          <span id="btn-line">Infinity Prestige.
+          <br>
+          <span id="btn-line"> >1 Infinity Coin< </span>
+          <br>
+          <span id="btn-line"> >Only Infinity Money< </span>
+        </button>
+        <br>
+        <h4>----------</h4>
+        <button onclick="save()">
+          <span id="btn-line">Save Game</span>
+        </button>
+        <button onclick="cheat()">Cheat DevTools</button>
+    </div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128985761-1"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','UA-128985761-1');</script>
+  </body>
+</html>
