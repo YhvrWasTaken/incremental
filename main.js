@@ -1,55 +1,8 @@
 var savegame = JSON.parse(localStorage.getItem("savegame"));
 
-var game = {
-  money: 10,
-
-  prestigecost: 20,
-  prestigemult: 1,
-
-  megaprestigecost: 100,
-  megaprestigemult: 1,
-
-  infcoins: 0,
-
-  tier1amt: 0,
-  tier1cost: 1e1,
-  tier1mult: 1,
-  tier1until10: 0,
-  tier1display: 0,
-
-  tier2amt: 0,
-  tier2cost: 1e2,
-  tier2mult: 1,
-  tier2until10: 0,
-  tier2display: 0,
-
-  tier3amt: 0,
-  tier3cost: 1e3,
-  tier3mult: 1,
-  tier3until10: 0,
-  tier3display: 0,
-
-  tier4amt: 0,
-  tier4cost: 1e4,
-  tier4mult: 1,
-  tier4until10: 0,
-  tier4display: 0,
-
-  tier5amt: 0,
-  tier5cost: 1e5,
-  tier5mult: 1,
-  tier5until10: 0,
-  tier5display: 0,
-
-  autobuy: false,
-
-  infupgrade1cost: 1,
-  infupgrade1: 10
-};
-
 var storage = 0;
 
-if (savegame !== null) {
+if ((typeof savegame) != "undefined") {
   game = savegame;
 }
 
@@ -81,7 +34,7 @@ function tier1produced() {
 function tier2produced() {
   if (game.money >= game.tier2cost) {
     game.tier2amt += 1
-    game.tier2until10 += 1;
+    game.tier2until10 += 1;;
     game.money -= game.tier2cost
     if (game.tier2display >= 1e6) {
       document.getElementById("tier2amt").innerHTML = game.tier2display.toExponential(2);
@@ -141,7 +94,7 @@ function tier4produced() {
     if(game.tier4until10 == 10) {
       game.tier4until10 = 0
       game.tier4cost = game.tier4cost * 100000
-      game.tier4mult += game.tier4mult
+      game.tier4mult += game.tier4mult;
       document.getElementById("tier4mult").innerHTML = game.tier4mult;
       if (game.tier4cost >= 1e6) {
         document.getElementById("tier4cost").innerHTML = game.tier4cost.toExponential(2);
@@ -300,6 +253,16 @@ function infupgrade1() {
     game.infupgrade1 = game.infupgrade1 * 10;
     document.getElementById("infcurrency").innerHTML = game.infcoins;
     document.getElementById("infupgrade1cost").innerHTML = game.infupgrade1cost;
+  }
+}
+
+function infupgrade2() {
+  if (game.infcoins >= game.infupgrade2cost) {
+    game.infcoins -= game.infupgrade2cost
+    game.infupgrade2cost = game.infupgrade2cost * 2;
+    game.infupgrade2 = game.infupgrade2 * 5;
+    document.getElementById("infcurrency").innerHTML = game.infcoins;
+    document.getElementById("infupgrade2cost").innerHTML = game.infupgrade2cost;
   }
 }
 
@@ -605,13 +568,63 @@ function oppositerange10(tiernum) {
   }
 }
 
+var game = {
+  money: 10,
+
+  prestigecost: 20,
+  prestigemult: 1,
+
+  megaprestigecost: 100,
+  megaprestigemult: 1,
+
+  infcoins: 0,
+
+  tier1amt: 0,
+  tier1cost: 1e1,
+  tier1mult: 1,
+  tier1until10: 0,
+  tier1display: 0,
+
+  tier2amt: 0,
+  tier2cost: 1e2,
+  tier2mult: 1,
+  tier2until10: 0,
+  tier2display: 0,
+
+  tier3amt: 0,
+  tier3cost: 1e3,
+  tier3mult: 1,
+  tier3until10: 0,
+  tier3display: 0,
+
+  tier4amt: 0,
+  tier4cost: 1e4,
+  tier4mult: 1,
+  tier4until10: 0,
+  tier4display: 0,
+
+  tier5amt: 0,
+  tier5cost: 1e5,
+  tier5mult: 1,
+  tier5until10: 0,
+  tier5display: 0,
+
+  autobuy: false,
+
+  infupgrade1: 10,
+  infupgrade1cost: 1,
+
+  infupgrade2: 1,
+  infupgrade2cost: 1
+};
+
 window.setInterval(function() {
 
-  game.money += (game.tier1amt / 10 * game.tier1mult * game.prestigemult * game.megaprestigemult)
-  game.tier1amt += (game.tier2amt / 10 * game.tier2mult * game.prestigemult * game.megaprestigemult)
-  game.tier2amt += (game.tier3amt / 10 * game.tier3mult * game.prestigemult * game.megaprestigemult)
-  game.tier3amt += (game.tier4amt / 10 * game.tier4mult * game.prestigemult * game.megaprestigemult)
-  game.tier4amt += (game.tier5amt / 10 * game.tier5mult * game.prestigemult * game.megaprestigemult)
+  game.money += (game.tier1amt / 10 * game.tier1mult * game.prestigemult * game.megaprestigemult * game.infupgrade2)
+  game.tier1amt += (game.tier2amt / 10 * game.tier2mult * game.prestigemult * game.megaprestigemult * game.infupgrade2)
+  game.tier2amt += (game.tier3amt / 10 * game.tier3mult * game.prestigemult * game.megaprestigemult * game.infupgrade2)
+  game.tier3amt += (game.tier4amt / 10 * game.tier4mult * game.prestigemult * game.megaprestigemult * game.infupgrade2)
+  game.tier4amt += (game.tier5amt / 10 * game.tier5mult * game.prestigemult * game.megaprestigemult * game.infupgrade2)
 
   if (game.autobuy) {
     tier1until10func()
@@ -684,4 +697,12 @@ window.setInterval(function() {
   } else {
     document.getElementById("tier5amt").innerHTML = game.tier5display;
   }
+
+  document.getElementById("prestigecost").innerHTML = game.prestigecost;
+  document.getElementById("megaprestigecost").innerHTML = game.megaprestigecost;
+
+  document.getElementById("infcurrency").innerHTML = game.infcoins;
+
+  document.getElementById("infupgrade1cost").innerHTML = game.infupgrade1cost;
+  document.getElementById("infupgrade2cost").innerHTML = game.infupgrade2cost;
 }, 100);
