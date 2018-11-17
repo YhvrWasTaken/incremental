@@ -246,7 +246,7 @@ function tier5until10func() {
   }
 }
 
-function infupgrade1() {
+function infupgrade1func() {
   if (game.infcoins >= game.infupgrade1cost) {
     game.infcoins -= game.infupgrade1cost
     game.infupgrade1cost = game.infupgrade1cost * 2;
@@ -256,7 +256,7 @@ function infupgrade1() {
   }
 }
 
-function infupgrade2() {
+function infupgrade2func() {
   if (game.infcoins >= game.infupgrade2cost) {
     game.infcoins -= game.infupgrade2cost
     game.infupgrade2cost = game.infupgrade2cost * 2;
