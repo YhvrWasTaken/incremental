@@ -127,7 +127,7 @@ function tier5produced() {
         document.getElementById("tier5cost").innerHTML = game.tier5cost;
       }
     }
-    document.getElementById("tier5until10").innerHTML = tier5until10;
+    document.getElementById("tier5until10").innerHTML = game.tier5until10;
   }
 }
 
